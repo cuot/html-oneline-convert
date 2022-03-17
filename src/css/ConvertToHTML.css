@@ -1,0 +1,49 @@
+body .container {
+  margin: 2% 15%;
+}
+
+body .container .main {
+  background-color: #2c3034;
+  color: gray;
+  border-radius: 10px;
+  height: 1200px;
+  padding-top: 30px;
+}
+
+body .container .main fieldset {
+  display: flex;
+  text-align: left;
+  margin: 20px 2.3vw;
+  border: solid 1px gray;
+  height: 200px;
+}
+
+body .container .main fieldset textarea {
+  width: 97%;
+  margin: 20px auto;
+}
+
+body .container .main .fd_s_TextArea {
+  position: relative;
+}
+
+body .container .main .fd_s_convertArea {
+  height: 710px;
+}
+
+body .container .main fieldset .HTML_ConvertArea {
+  display: flex;
+  margin-bottom: 40px;
+  height: 640px;
+}
+
+#progress {
+  bottom: 1ex;
+  right: 1.5%;
+  width: 97%;
+  height: 20px;
+  overflow: hidden;
+  border: 1px solid black;
+  background-color: white;
+  position: absolute;
+}

@@ -1,0 +1,39 @@
+header .container {
+  margin: 2% 15%;
+}
+
+header .container .top_menu {
+  text-align: left;
+  padding: 20px;
+  padding-left: 120px;
+  background-color: #2c3034;
+  color: white;
+  border-radius: 10px;
+  font-size: 40px;
+}
+
+body {
+  /* 수직 줄무늬 패턴 */
+  /* background: repeating-linear-gradient(
+    90deg,
+    #444,
+    #444 10px,
+    #888 0,
+    #888 20px
+  ); */
+  /* 가로 줄무늬 패턴 */
+  /* background: repeating-linear-gradient(#444, #444 10px, #888 0, #888 20px); */
+
+  /* 대각선 줄무늬 1 */
+  /* background: repeating-linear-gradient(45deg, #444, #444 10px, #888 0, #888 20px); */
+
+  /* 대각선 줄무늬 2 */
+  /* background: repeating-linear-gradient(-45deg, #444, #444 10px, #888 0, #888 20px); */
+
+  /* 점 패턴 */
+  background: #888;
+  background-image: radial-gradient(#444 20%, transparent 0),
+    radial-gradient(#444 20%, transparent 0);
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
+}
