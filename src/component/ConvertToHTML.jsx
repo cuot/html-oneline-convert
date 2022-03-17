@@ -5,25 +5,34 @@ export default function ConvertToHTML() {
   const [val, setVal] = useState("");
 
   const click = (props) => {
-    props.target.value = "";
+    // props.target.value = "";
   };
 
   const changeValue = (props) => {
     // 9 = '/t', 10 = '\n', 13 = 'r'
     const v = props.target.value;
     let tmp = "";
+    let sw = true;
+
     if (v === "") {
       setVal("");
       return;
     }
     for (let i = 0; v.length > i; i++) {
+      if (v.charCodeAt(i) === 60) sw = true;
       if (
-        v.charCodeAt(i) !== 9 ||
-        v.charCodeAt(i) !== 10 ||
-        v.charCodeAt(i) !== 13
+        !(
+          v.charCodeAt(i) === 9 ||
+          v.charCodeAt(i) === 10 ||
+          v.charCodeAt(i) === 13
+        ) &&
+        sw
       ) {
         tmp += v.charAt(i);
         setVal(tmp);
+        console.log(v.charCodeAt(i));
+        if (v.charCodeAt(i) === 60) sw = true;
+        if (v.charCodeAt(i) === 62) sw = false;
       }
     }
   };
