@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/ConvertToHTML.css";
+import useScript from "../hook/useScript";
 
 export default function ConvertToHTML() {
   const [val, setVal] = useState("");
 
-  const click = (props) => {
-    // props.target.value = "";
+  const status = "../js/CleanHTML.js";
+
+  useEffect(() => {
+    if (status === "ready") {
+    }
+  }, [val]);
+
+  const codeInputTabHandler = (event) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      console.log(event.key);
+      setVal(val + "\t");
+    }
   };
 
   const changeValue = (props) => {
     // 9 = '/t', 10 = '\n', 13 = 'r'
-    const v = props.target.value;
+    let v = props.target.value;
     let tmp = "";
     let sw = true;
 
+    setVal(tmp);
     if (v === "") {
       setVal("");
       return;
@@ -30,11 +43,20 @@ export default function ConvertToHTML() {
       ) {
         tmp += v.charAt(i);
         setVal(tmp);
-        console.log(v.charCodeAt(i));
         if (v.charCodeAt(i) === 60) sw = true;
         if (v.charCodeAt(i) === 62) sw = false;
       }
     }
+    document.getElementById("HTML_ConvertArea").value = tmp;
+  };
+
+  const copy = () => {
+    navigator.clipboard.writeText(val);
+    console.log(val);
+    document.getElementById("bar").textContent = "Copy Complite";
+    setTimeout(() => {
+      document.getElementById("bar").textContent = "";
+    }, 2000);
   };
 
   return (
@@ -44,12 +66,15 @@ export default function ConvertToHTML() {
           <legend>&nbsp;HTML&nbsp;</legend>
           <textarea
             onChange={changeValue}
-            onClick={click}
-            className="HTML_TextArea"></textarea>
+            onKeyDown={codeInputTabHandler}
+            id="HTML_TextArea"></textarea>
         </fieldset>
-        <fieldset className="fd_s_convertArea">
+        <div id="progress">
+          <div id="bar"></div>
+        </div>
+        <fieldset onClick={copy} className="fd_s_convertArea">
           <legend>&nbsp;Convert&nbsp;</legend>
-          <textarea className="HTML_ConvertArea" value={val}></textarea>
+          <textarea tabIndex="1" id="HTML_ConvertArea"></textarea>
         </fieldset>
       </div>
     </div>
