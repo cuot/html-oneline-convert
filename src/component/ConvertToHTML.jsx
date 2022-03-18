@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/ConvertToHTML.css";
-import useScript from "../hook/useScript";
+// import useScript from "../hook/useScript";
 
 export default function ConvertToHTML() {
   const [val, setVal] = useState("");
