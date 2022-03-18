@@ -13,10 +13,14 @@ export default function ConvertToHTML() {
   }, [val, codeInput]);
 
   const codeInputTabHandler = (event) => {
+    console.log(event.key);
     if (event.key === "Tab") {
       event.preventDefault();
-      // console.log(event.key);
+
       setcodeInput(codeInput + "\t");
+    } else if (event.key === "Backspace") {
+      if (codeInput.length === 1)
+        setcodeInput(codeInput.substring(0, codeInput.length - 1));
     }
   };
 
