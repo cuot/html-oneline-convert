@@ -4,19 +4,19 @@ import "../css/ConvertToHTML.css";
 
 export default function ConvertToHTML() {
   const [val, setVal] = useState("");
-
+  const [codeInput, setcodeInput] = useState("");
   const status = "../js/CleanHTML.js";
 
   useEffect(() => {
     if (status === "ready") {
     }
-  }, [val]);
+  }, [val, codeInput]);
 
   const codeInputTabHandler = (event) => {
     if (event.key === "Tab") {
       event.preventDefault();
-      console.log(event.key);
-      setVal(val + "\t");
+      // console.log(event.key);
+      setcodeInput(codeInput + "\t");
     }
   };
 
@@ -48,6 +48,7 @@ export default function ConvertToHTML() {
       }
     }
     document.getElementById("HTML_ConvertArea").value = tmp;
+    setcodeInput(props.currentTarget.value);
   };
 
   const copy = () => {
@@ -65,6 +66,7 @@ export default function ConvertToHTML() {
         <fieldset className="fd_s_TextArea">
           <legend>&nbsp;HTML&nbsp;</legend>
           <textarea
+            value={codeInput}
             onChange={changeValue}
             onKeyDown={codeInputTabHandler}
             id="HTML_TextArea"></textarea>
