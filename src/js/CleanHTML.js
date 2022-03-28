@@ -147,42 +147,10 @@ function cleanTag(tag) {
   }
   return tagout.replace(/\s*$/, "") + suffix + ">";
 }
-var ownLine = [
-  "area",
-  "body",
-  "head",
-  "hr",
-  "i?frame",
-  "link",
-  "meta",
-  "noscript",
-  "style",
-  "table",
-  "tbody",
-  "thead",
-  "tfoot",
-];
+var ownLine = ["area", "body", "head", "hr", "i?frame", "link", "meta", "noscript", "style", "table", "tbody", "thead", "tfoot"];
 var contOwnLine = ["li", "dt", "dt", "h[1-6]", "option", "script"];
-var lineBefore = new RegExp(
-  "^<(/?" + ownLine.join("|/?") + "|" + contOwnLine.join("|") + ")[ >]",
-);
-var newLevel = [
-  "blockquote",
-  "div",
-  "dl",
-  "fieldset",
-  "form",
-  "frameset",
-  "map",
-  "ol",
-  "p",
-  "pre",
-  "select",
-  "td",
-  "th",
-  "tr",
-  "ul",
-];
+var lineBefore = new RegExp("^<(/?" + ownLine.join("|/?") + "|" + contOwnLine.join("|") + ")[ >]");
+var newLevel = ["blockquote", "div", "dl", "fieldset", "form", "frameset", "map", "ol", "p", "pre", "select", "td", "th", "tr", "ul"];
 newLevel = new RegExp("^</?(" + newLevel.join("|") + ")[ >]");
 function placeTag(tag, out) {
   var nl = tag.match(newLevel);

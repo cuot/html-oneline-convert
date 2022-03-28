@@ -10,25 +10,12 @@ export default function ConvertToHTML() {
   useEffect(() => {
     if (status === "ready") {
     }
-  }, [val, codeInput]);
-
-  const codeInputTabHandler = (event) => {
-    console.log(event.key);
-    if (event.key === "Tab") {
-      event.preventDefault();
-
-      setcodeInput(codeInput + "\t");
-    } else if (event.key === "Backspace") {
-      if (codeInput.length === 1)
-        setcodeInput(codeInput.substring(0, codeInput.length - 1));
-    }
-  };
+  }, [val]);
 
   const changeValue = (props) => {
     // 9 = '/t', 10 = '\n', 13 = 'r'
     let v = props.target.value;
     let tmp = "";
-    let sw = true;
 
     setVal(tmp);
     if (v === "") {
@@ -36,19 +23,9 @@ export default function ConvertToHTML() {
       return;
     }
     for (let i = 0; v.length > i; i++) {
-      if (v.charCodeAt(i) === 60) sw = true;
-      if (
-        !(
-          v.charCodeAt(i) === 9 ||
-          v.charCodeAt(i) === 10 ||
-          v.charCodeAt(i) === 13
-        ) &&
-        sw
-      ) {
+      if (!(v.charCodeAt(i) === 9 || v.charCodeAt(i) === 10 || v.charCodeAt(i) === 13)) {
         tmp += v.charAt(i);
         setVal(tmp);
-        if (v.charCodeAt(i) === 60) sw = true;
-        if (v.charCodeAt(i) === 62) sw = false;
       }
     }
     document.getElementById("HTML_ConvertArea").value = tmp;
@@ -69,11 +46,7 @@ export default function ConvertToHTML() {
       <div className="main">
         <fieldset className="fd_s_TextArea">
           <legend>&nbsp;HTML&nbsp;</legend>
-          <textarea
-            value={codeInput}
-            onChange={changeValue}
-            onKeyDown={codeInputTabHandler}
-            id="HTML_TextArea"></textarea>
+          <textarea value={codeInput} onChange={changeValue} id="HTML_TextArea"></textarea>
         </fieldset>
         <div id="progress">
           <div id="bar"></div>
